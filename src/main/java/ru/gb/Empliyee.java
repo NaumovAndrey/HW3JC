@@ -4,9 +4,9 @@ import java.util.Random;
 
 public abstract class Empliyee {
 
-    private static Random random = new Random();
-    private static String[] names = new String[] {"Андрей", "Александр", "Николай", "Алексей", "Владимир", "Максим", "Вячеслав"};
-    private static String[] surnames = new String[] {"Наумов", "Путин", "Толстой", "Пушкин", "Лермонтов", "Некрасов"};
+    protected static Random random = new Random();
+    protected static String[] names = new String[] {"Андрей", "Александр", "Николай", "Алексей", "Владимир", "Максим", "Вячеслав"};
+    protected static String[] surnames = new String[] {"Наумов", "Путин", "Толстой", "Пушкин", "Лермонтов", "Некрасов"};
     private static int counter = 0;
 
     /**
@@ -26,21 +26,21 @@ public abstract class Empliyee {
     /**
      * Ставка заработной платы
      */
-    private double salary;
+    protected double salary;
 
     {
         id = ++counter;
     }
 
-    private Empliyee() {
+    protected Empliyee() {
         this("#Name#", "#Surname");
     }
 
-    private Empliyee(String name, String surName) {
+     protected Empliyee(String name, String surName) {
         this(name, surName, 0);
     }
 
-    private Empliyee(String name, String surName, double salary) {
+    protected Empliyee(String name, String surName, double salary) {
         if (salary < 0){
             throw new RuntimeException("Уровеь заработной платы не корректен");
         }
@@ -72,13 +72,13 @@ public abstract class Empliyee {
         this.salary = salary;
     }
 
-    public static Empliyee getInstance(){
+    /*public static Empliyee getInstance(){
         return new Empliyee(
                 names[random.nextInt(surnames.length)],
                 surnames[random.nextInt(surnames.length)],
                 random.nextInt(130000, 250000));
 
-    }
+    }*/
 
     /**
      * Пасчёт среднемесячной оплаты
