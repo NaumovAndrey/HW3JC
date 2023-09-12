@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Worker extends Employee {
 
-    private Worker(String name, String surName, double salary) {
+    public Worker(String name, String surName, double salary) {
         super(name, surName, salary);
     }
 

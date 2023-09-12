@@ -27,7 +27,7 @@ public abstract class Employee implements Comparable<Employee>{
     /**
      * Ставка заработной платы
      */
-    protected double salary;
+    protected static double salary;
 
     {
         id = ++counter;
@@ -86,7 +86,7 @@ public abstract class Employee implements Comparable<Employee>{
 
     }*/
 
-    /**
+     /**
      * Расчёт среднемесячной оплаты
      *
      * @return
