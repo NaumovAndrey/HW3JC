@@ -2,11 +2,12 @@ package ru.gb;
 
 import java.util.Random;
 
-public abstract class Empliyee {
+public abstract class Employee implements Comparable<Employee>{
 
+    //region Поля
     protected static Random random = new Random();
-    protected static String[] names = new String[] {"Андрей", "Александр", "Николай", "Алексей", "Владимир", "Максим", "Вячеслав"};
-    protected static String[] surnames = new String[] {"Наумов", "Путин", "Толстой", "Пушкин", "Лермонтов", "Некрасов"};
+    protected static String[] names = new String[]{"Андрей", "Александр", "Николай", "Алексей", "Владимир", "Максим", "Вячеслав"};
+    protected static String[] surnames = new String[]{"Наумов", "Путин", "Толстой", "Пушкин", "Лермонтов", "Некрасов"};
     private static int counter = 0;
 
     /**
@@ -31,24 +32,28 @@ public abstract class Empliyee {
     {
         id = ++counter;
     }
+    //endregion
 
-    protected Empliyee() {
+    //region Конструкторы
+    private Employee() {
         this("#Name#", "#Surname");
     }
 
-     protected Empliyee(String name, String surName) {
+    Employee(String name, String surName) {
         this(name, surName, 0);
     }
 
-    protected Empliyee(String name, String surName, double salary) {
-        if (salary < 0){
+    protected Employee(String name, String surName, double salary) {
+        if (salary < 0) {
             throw new RuntimeException("Уровеь заработной платы не корректен");
         }
         this.name = name;
         this.surName = surName;
         this.salary = salary;
     }
+    //endregion
 
+    //region get and set
     private int getId() {
         return id;
     }
@@ -64,9 +69,10 @@ public abstract class Empliyee {
     public double getSalary() {
         return salary;
     }
+    //endregion
 
     public void setSalary(double salary) {
-        if (salary < 0){
+        if (salary < 0) {
             throw new RuntimeException("Уровеь заработной платы не корректен");
         }
         this.salary = salary;
@@ -81,11 +87,22 @@ public abstract class Empliyee {
     }*/
 
     /**
-     * Пасчёт среднемесячной оплаты
+     * Расчёт среднемесячной оплаты
      *
      * @return
      */
     public abstract double calculateSalary();
+
+    /**
+     * Метод сортировки
+     * @param o the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(Employee o) {
+        return Double.compare(calculateSalary(), o.calculateSalary());
+
+    }
 
     @Override
     public String toString() {

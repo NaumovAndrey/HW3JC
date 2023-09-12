@@ -1,19 +1,27 @@
 package ru.gb;
 
-public class Worker extends Empliyee{
-    public Worker(String name, String surName) {
-        super(name, surName);
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    public Worker(String name, String surName, double salary) {
+public class Worker extends Employee {
+
+    private Worker(String name, String surName, double salary) {
         super(name, surName, salary);
     }
 
-    public static Empliyee getInstance() {
+    public static Employee getInstance() {
         return new Worker(
                 names[random.nextInt(surnames.length)],
                 surnames[random.nextInt(surnames.length)],
                 random.nextInt(130000, 250000));
+    }
+
+    public static List<Employee> getEmployees(int count){
+        List<Employee> employees = new ArrayList<>();
+        for (int i = 0; i < count; i++){
+            employees.add(getInstance());
+        }
+        return employees;
     }
 
     @Override
